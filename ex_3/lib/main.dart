@@ -4,34 +4,61 @@ void main() {
   runApp(
     MaterialApp(
       home: Container(
-        padding: EdgeInsets.all(5),
-        margin: EdgeInsets.all(5),
-        child: Center(
-          child: Column(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.blue[100],
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Text('OOP', style: TextStyle(color: Colors.white)),
+        padding: EdgeInsets.all(70),
+        // margin: EdgeInsets.all(5),
+        // child: Center(
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.blue[100],
+                borderRadius: BorderRadius.circular(10),
               ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.blue[200],
-                  borderRadius: BorderRadius.circular(10),
+              child: Center(
+                child: Text(
+                  'OOP',
+                  style: TextStyle(
+                    color: Colors.white,
+                    decoration: TextDecoration.none,
+                  ),
                 ),
-                child: Text('DART', style: TextStyle(color: Colors.white)),
               ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.blue[300],
-                  borderRadius: BorderRadius.circular(10),
+            ),
+
+            Container(
+              margin: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.blue[200],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Center(
+                child: Text(
+                  'DART',
+                  style: TextStyle(
+                    color: Colors.white,
+                    decoration: TextDecoration.none,
+                  ),
                 ),
-                child: Text('FLUTTER', style: TextStyle(color: Colors.white)),
               ),
-            ],
-          ),
+            ),
+            Container(
+              margin: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.blue[300],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Center(
+                child: Text(
+                  'Flutter',
+                  style: TextStyle(
+                    color: Colors.white,
+                    decoration: TextDecoration.none,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     ),
