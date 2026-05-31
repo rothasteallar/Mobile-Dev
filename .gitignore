@@ -3,6 +3,7 @@
 
 # But keep these
 !.gitignore
+!W4-Activity/
 !Lab/
 Lab/*
 !Lab/act_1/
