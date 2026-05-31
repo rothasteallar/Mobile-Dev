@@ -1,0 +1,12 @@
+# Ignore everything
+/*
+
+# But keep these
+!.gitignore
+!Lab/
+Lab/*
+!Lab/act_1/
+Lab/act_1/*
+!Lab/act_1/lib/
+Lab/act_1/lib/*
+!Lab/act_1/lib/W4-Activity/
