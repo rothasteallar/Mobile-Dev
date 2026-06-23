@@ -1,10 +1,14 @@
+<<<<<<< HEAD
 import 'package:flutter/material.dart';
 
 import '../../../models/grocery.dart';
+=======
+>>>>>>> 2a368f0933b43bf47dcf5b2776a6375cffc0eaff
 
 // ---------------------------------------------
 // Create a new stateless widget : GroceryTile
 // ---------------------------------------------
+<<<<<<< HEAD
 class GroceryItemTile extends StatelessWidget {
   const GroceryItemTile({super.key, required this.groceryItem});
   final GroceryItem groceryItem;
@@ -21,6 +25,9 @@ class GroceryItemTile extends StatelessWidget {
     );
   }
 }
+=======
+
+>>>>>>> 2a368f0933b43bf47dcf5b2776a6375cffc0eaff
 
 // The widget shall take as required parameter a Grocery  
 
