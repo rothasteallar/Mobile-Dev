@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 import '../../../data/repository/repository_exception.dart';
 
@@ -34,8 +35,16 @@ class _TodosScreenState extends State<TodosScreen> {
     // Handle the success, loading and error cases (catch exception)
     // Update the widget state (asyncData)
 
+
     // List<Todo> todos = await repository.getTodos();
     // setState(() => asyncData = AsyncData.success(todos),);
+      setState(() => asyncData = AsyncData.loading());
+  try {
+    List<Todo> todos = await repository.getTodos();
+    setState(() => asyncData = AsyncData.success(todos));
+  } on RepositoryException catch (e) {
+    setState(() => asyncData = AsyncData.error(e.message));
+  }
   }
 
   void onUpdateCompleted(Todo todo) async {
