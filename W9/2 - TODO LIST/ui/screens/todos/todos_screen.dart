@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 
 import '../../../data/repository/repository_exception.dart';
 
@@ -17,6 +16,7 @@ class TodosScreen extends StatefulWidget {
 }
 
 class _TodosScreenState extends State<TodosScreen> {
+  //Default to notstarted
   AsyncData<List<Todo>> asyncData = AsyncData.notstarted();
 
   @override
@@ -35,16 +35,23 @@ class _TodosScreenState extends State<TodosScreen> {
     // Handle the success, loading and error cases (catch exception)
     // Update the widget state (asyncData)
 
-
     // List<Todo> todos = await repository.getTodos();
     // setState(() => asyncData = AsyncData.success(todos),);
-      setState(() => asyncData = AsyncData.loading());
-  try {
-    List<Todo> todos = await repository.getTodos();
-    setState(() => asyncData = AsyncData.success(todos));
-  } on RepositoryException catch (e) {
-    setState(() => asyncData = AsyncData.error(e.message));
-  }
+    setState(() => asyncData = AsyncData.loading());
+    try {
+      List<Todo> todos = await repository.getTodos();
+      // print(todos);
+
+      ////shouldn't put this throw since it empty == no list yet, not an error
+      // if (todos.isEmpty) {
+      //   throw Exception("Cannot get the data");
+      // }
+      setState(() => asyncData = AsyncData.success(todos));
+    } on RepositoryException catch (e) {
+      setState(() {
+        asyncData = AsyncData.error(e.message);
+      });
+    }
   }
 
   void onUpdateCompleted(Todo todo) async {
@@ -56,6 +63,20 @@ class _TodosScreenState extends State<TodosScreen> {
     // Update the widget state (asyncData)
 
     // ! we dont reload the full list, we update directly the modified Todo in the cache (asyncData)
+
+    //loop through cache data, update data with copyWith since we want to update one field final type
+    try {
+      await repository.updateCompleted(todo.id, !todo.completed);
+      List<Todo> updated = asyncData.value!.map((t) {
+        return t.id == todo.id ? t.copyWith(!todo.completed) : t;
+      }).toList();
+      setState(() => asyncData = AsyncData.success(updated));
+      print("yeehhhh");
+      
+    } on RepositoryException catch (e) {
+      print("ERROR: ${e.message}");
+      setState(() => asyncData = AsyncData.error(e.message));
+    }
   }
 
   Widget get content => switch (asyncData.status) {

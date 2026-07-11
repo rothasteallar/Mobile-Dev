@@ -7,25 +7,15 @@ class TodoDto {
   static const title = "title";
   static const completed = "completed";
 
-  // static Todo fromJson(String id, Map<String, dynamic> json) {
-  //   // Assert the map contains the keys  title and completed with the right data types
-
-  //   // Return the right todo object by reading the json map
-  //   return Todo(id: "fake", title: "fake", completed: false);
-  // }
   static Todo fromJson(String id, Map<String, dynamic> json) {
-  assert(json.containsKey(title));
-  assert(json.containsKey(completed));
+    // Assert the map contains the keys  title and completed with the right data types
 
-  assert(json[title] is String);
-  assert(json[completed] is bool);
+    assert(json.containsKey(title), "There's no title");
+    assert(json.containsKey(completed), "There's no completed");
 
-  return Todo(
-    id: id,
-    title: json[title],
-    completed: json[completed],
-  );
-}
+    // Return the right todo object by reading the json map
+    return Todo(id: id, title: json[title], completed: json[completed]);
+  }
 
   static Map<String, dynamic> toJson(Todo todo) {
     return {title: todo.title, completed: todo.completed};
@@ -61,4 +51,6 @@ void main() {
 
     return TodoDto.fromJson(id, json);
   }).toList();
+
+  print(todos);
 }
